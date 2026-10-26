@@ -1,0 +1,980 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sujay Shanbhag | Personal Portfolio</title>
+<meta name="description" content="The personal portfolio of Sujay Shanbhag — entrepreneurship, technology, markets, creativity and aviation.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #090a0b;
+  --surface: #111315;
+  --surface2: #17191c;
+  --text: #f3f3f0;
+  --muted: #96999d;
+  --line: rgba(255,255,255,.10);
+  --accent: #c9f36b;
+  --max: 1160px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+button, input, textarea { font: inherit; }
+
+::selection { background: var(--accent); color: #090a0b; }
+
+.container {
+  width: min(var(--max), 90%);
+  margin: auto;
+}
+
+section { padding: 110px 0; }
+
+.eyebrow {
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font: 800 clamp(2.3rem, 5vw, 4rem)/1.1 'Manrope', sans-serif;
+  letter-spacing: -2px;
+  margin: 16px 0 20px;
+}
+
+.section-description {
+  max-width: 630px;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+header {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  top: 0;
+  background: rgba(9,10,11,.78);
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(18px);
+  transition: .3s;
+}
+
+header.scrolled { border-color: var(--line); }
+
+.nav {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  font: 800 1.45rem 'Manrope', sans-serif;
+  letter-spacing: -1px;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  list-style: none;
+  color: #b9bbbd;
+  font-size: .88rem;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-cta {
+  border: 1px solid var(--line);
+  padding: 10px 17px;
+  border-radius: 5px;
+  font-size: .84rem;
+  transition: .3s;
+}
+
+.nav-cta:hover {
+  background: var(--accent);
+  color: #090a0b;
+}
+
+.menu-toggle {
+  display: none;
+  color: white;
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 145px 0 85px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  right: -180px;
+  top: 70px;
+  background: radial-gradient(circle, rgba(201,243,107,.09), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  align-items: center;
+  gap: 65px;
+}
+
+.hero h1 {
+  font: 800 clamp(3.6rem, 8vw, 7rem)/.99 'Manrope', sans-serif;
+  letter-spacing: -6px;
+  margin: 22px 0;
+}
+
+.hero h1 span { color: var(--accent); }
+
+.hero-description {
+  color: #a5a7aa;
+  max-width: 530px;
+  font-size: 1.04rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+  margin-top: 33px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 21px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: .9rem;
+  transition: transform .3s, background .3s;
+}
+
+.btn:hover { transform: translateY(-4px); }
+
+.btn-primary { background: var(--accent); color: #090a0b; }
+.btn-secondary { border: 1px solid var(--line); }
+
+.hero-note {
+  margin-top: 30px;
+  color: #777b7e;
+  font-size: .8rem;
+}
+
+.hero-visual {
+  position: relative;
+  max-width: 420px;
+  width: 100%;
+  margin: auto;
+}
+
+.portrait-frame {
+  aspect-ratio: 4 / 5;
+  position: relative;
+  border-radius: 180px 180px 12px 12px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #252a25, #121412 65%);
+  border: 1px solid rgba(201,243,107,.2);
+}
+
+.portrait-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.portrait-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px;
+  color: #d9e7c3;
+}
+
+.portrait-placeholder strong {
+  font: 800 5rem 'Manrope', sans-serif;
+  color: var(--accent);
+}
+
+.portrait-placeholder span { color: #9a9f93; font-size: .8rem; }
+
+.portrait-frame img:not([src=""]) + .portrait-placeholder { display: none; }
+
+.float-card {
+  position: absolute;
+  padding: 14px 17px;
+  background: #181b18;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 20px 70px #0008;
+  animation: float 5s ease-in-out infinite;
+}
+
+.float-card small { color: var(--muted); display: block; font-size: .7rem; }
+.float-card strong { font-size: .9rem; }
+.float-card.one { left: -45px; bottom: 80px; }
+.float-card.two { right: -25px; top: 85px; animation-delay: -2s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+  color: #898d8e;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 35px;
+  animation: marquee 28s linear infinite;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.marquee-track span::after {
+  content: "?";
+  margin-left: 35px;
+  color: var(--accent);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 70px;
+  align-items: start;
+  margin-top: 55px;
+}
+
+.quote-card {
+  padding: 35px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  position: sticky;
+  top: 110px;
+}
+
+.quote-mark {
+  font: 800 5rem/.8 'Manrope', sans-serif;
+  color: var(--accent);
+}
+
+.quote-card blockquote {
+  font: 700 1.6rem/1.4 'Manrope', sans-serif;
+  margin: 25px 0;
+  letter-spacing: -.6px;
+}
+
+.quote-card p { color: var(--muted); font-size: .88rem; }
+
+.about-copy p { color: #a8abad; margin-bottom: 20px; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.stat {
+  padding: 19px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.stat strong {
+  display: block;
+  color: var(--accent);
+  font: 800 1.5rem 'Manrope', sans-serif;
+}
+
+.stat span { font-size: .8rem; color: var(--muted); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 45px;
+}
+
+.skill-card {
+  background: var(--surface);
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  transition: .35s;
+}
+
+.skill-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(201,243,107,.5);
+  background: #151916;
+}
+
+.skill-icon {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(201,243,107,.09);
+  color: var(--accent);
+  font-size: 1.35rem;
+  margin-bottom: 22px;
+}
+
+.skill-card h3 {
+  font: 700 1.12rem 'Manrope', sans-serif;
+  margin-bottom: 10px;
+}
+
+.skill-card p { color: var(--muted); font-size: .88rem; }
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+
+.skill-tags span {
+  font-size: .7rem;
+  color: #b7b9b8;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.dark-section { background: #0e1011; }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 45px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: .35s;
+}
+
+.project-card:hover { transform: translateY(-7px); border-color: #555b4b; }
+
+.project-art {
+  min-height: 220px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #242a20, #101311);
+}
+
+.project-art::before {
+  content: "";
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  border: 1px solid rgba(201,243,107,.24);
+  border-radius: 50%;
+  right: -65px;
+  top: -60px;
+  box-shadow: 0 0 0 24px rgba(201,243,107,.025), 0 0 0 50px rgba(201,243,107,.02);
+}
+
+.project-art .symbol {
+  position: relative;
+  z-index: 1;
+  font: 800 3.6rem 'Manrope', sans-serif;
+  color: var(--accent);
+  letter-spacing: -3px;
+}
+
+.project-art .art-label {
+  position: relative;
+  z-index: 1;
+  font-size: .7rem;
+  letter-spacing: 2px;
+  color: #c0c5b9;
+  text-transform: uppercase;
+}
+
+.project-body { padding: 24px; }
+
+.project-body h3 {
+  font: 700 1.1rem 'Manrope', sans-serif;
+  margin-bottom: 10px;
+}
+
+.project-body p { color: var(--muted); font-size: .86rem; }
+
+.project-link {
+  display: inline-block;
+  color: var(--accent);
+  font-size: .83rem;
+  margin-top: 20px;
+}
+
+.experiment-list { margin-top: 45px; border-top: 1px solid var(--line); }
+
+.experiment {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 27px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.experiment-number { color: var(--accent); font: 700 1.2rem 'Manrope', sans-serif; }
+
+.experiment h3 { font: 700 1.1rem 'Manrope', sans-serif; }
+.experiment p { color: var(--muted); font-size: .85rem; margin-top: 5px; }
+
+.status {
+  font-size: .7rem;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: #b6b9b4;
+  white-space: nowrap;
+}
+
+.timeline {
+  margin-top: 45px;
+  border-left: 1px solid #44483d;
+  padding-left: 30px;
+}
+
+.timeline-item { position: relative; padding: 0 0 36px; }
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -36px;
+  top: 8px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px rgba(201,243,107,.08);
+}
+
+.timeline-item small { color: var(--accent); font-weight: 700; letter-spacing: 1px; }
+.timeline-item h3 { font: 700 1.2rem 'Manrope', sans-serif; margin: 7px 0; }
+.timeline-item p { color: var(--muted); max-width: 650px; font-size: .9rem; }
+
+.contact-panel {
+  margin-top: 45px;
+  padding: clamp(30px, 6vw, 70px);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: radial-gradient(ellipse at top right, rgba(201,243,107,.09), transparent 55%), var(--surface);
+}
+
+.contact-panel h3 {
+  font: 800 clamp(2.4rem, 6vw, 5rem)/1.05 'Manrope', sans-serif;
+  letter-spacing: -3px;
+  max-width: 750px;
+}
+
+.contact-panel h3 span { color: var(--accent); }
+
+.contact-panel p { color: var(--muted); margin: 20px 0 28px; max-width: 600px; }
+
+.contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+footer {
+  padding: 27px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+footer strong { color: var(--text); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .75s ease, transform .75s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr  .8fr; gap: 30px; }
+  .hero h1 { letter-spacing: -3px; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { gap: 35px; }
+  .float-card.one { left: -12px; }
+  .float-card.two { right: -10px; }
+}
+
+@media (max-width: 680px) {
+  section { padding: 78px 0; }
+  .menu-toggle { display: block; }
+  .nav-cta { display: none; }
+  .nav-links {
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: #0d0f10;
+    border-bottom: 1px solid var(--line);
+    padding: 22px 5%;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17px;
+  }
+  .nav-links.open { display: flex; }
+  .hero { padding-top: 125px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(3.4rem, 16vw, 5.6rem); }
+  .hero-visual { max-width: 310px; margin-top: 30px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .quote-card { position: static; }
+  .skills-grid, .project-grid { grid-template-columns: 1fr; }
+  .project-art { min-height: 180px; }
+  .experiment { grid-template-columns: 35px 1fr; }
+  .experiment .status { grid-column: 2; justify-self: start; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .float-card { padding: 10px 12px; }
+  .float-card.one { left: -12px; bottom: 40px; }
+  .float-card.two { right: -8px; top: 55px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+  <div class="container nav">
+    <a class="logo" href="#home">SUZ<span>ZZ</span>.</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">Menu ?</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#interests">Interests</a></li>
+      <li><a href="#work">Projects</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Let's connect ?</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Student · Builder · Future Entrepreneur</div>
+      <h1>Think big.<br>Build <span>real.</span></h1>
+      <p class="hero-description">
+        I'm Sujay Shanbhag — a student from Karnataka, India, exploring entrepreneurship,
+        technology, financial markets and aviation while learning to turn ambitious ideas
+        into practical projects.
+      </p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#work">Explore my work ?</a>
+        <a class="btn btn-secondary" href="#about">Get to know me</a>
+      </div>
+      <p class="hero-note">Independent thinking. Practical learning. Consistent execution.</p>
+    </div>
+
+    <div class="hero-visual">
+      <div class="portrait-frame">
+        <img src="mainphoto.png" alt="Portrait of Sujay Shanbhag">
+        <div class="portrait-placeholder">
+          <strong>S.</strong>
+          <span>Add your photo as mainphoto.png</span>
+        </div>
+      </div>
+      <div class="float-card one">
+        <small>Currently exploring</small>
+        <strong>Business & Technology</strong>
+      </div>
+      <div class="float-card two">
+        <small>Long-term dream</small>
+        <strong>Build something meaningful ?</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>ENTREPRENEURSHIP</span><span>TECHNOLOGY</span><span>FINANCIAL MARKETS</span>
+    <span>AVIATION</span><span>CREATIVITY</span><span>CONTINUOUS LEARNING</span>
+    <span>ENTREPRENEURSHIP</span><span>TECHNOLOGY</span><span>FINANCIAL MARKETS</span>
+    <span>AVIATION</span><span>CREATIVITY</span><span>CONTINUOUS LEARNING</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="container">
+    <div class="eyebrow reveal">A little about me</div>
+    <h2 class="section-title reveal">Still learning.<br>Already building.</h2>
+    <p class="section-description reveal">
+      I don't have everything figured out. I believe in experimenting, learning from
+      setbacks and taking action before waiting for the perfect moment.
+    </p>
+
+    <div class="about-grid">
+      <div class="quote-card reveal">
+        <div class="quote-mark">“</div>
+        <blockquote>
+          Think independently. Build practically. Learn continuously.
+        </blockquote>
+        <p>Let consistent work speak for itself.</p>
+      </div>
+
+      <div class="about-copy reveal">
+        <p>
+          I'm currently a student at PACE PU College in Shivamogga, Karnataka.
+          My interests extend beyond the classroom into business, technology,
+          creative work and understanding how financial markets operate.
+        </p>
+        <p>
+          I've experimented with different business ideas, from clothing concepts
+          to websites for local businesses. Some attempts didn't work out.
+          Others taught me how to communicate, sell, build and improve.
+        </p>
+        <p>
+          I'm particularly interested in the process of turning an idea into
+          something useful — identifying a real problem, developing a solution,
+          presenting it well and learning from the response.
+        </p>
+        <p>
+          Away from business, aviation has a special place in my life. I'm fascinated
+          by aircraft and the possibility of becoming a commercial pilot.
+          I also enjoy badminton, Hindustani classical music, films and exploring new places.
+        </p>
+
+        <div class="stats">
+          <div class="stat"><strong>01</strong><span>Curiosity first</span></div>
+          <div class="stat"><strong>8</strong><span>Things to learn</span></div>
+          <div class="stat"><strong>Build</strong><span>Through practice</span></div>
+          <div class="stat"><strong>Rise</strong><span>After setbacks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section" id="interests">
+  <div class="container">
+    <div class="eyebrow reveal">What I'm exploring</div>
+    <h2 class="section-title reveal">Different interests.<br>One curious mind.</h2>
+    <p class="section-description reveal">
+      I'm exploring different fields to discover what I can learn, create and contribute.
+    </p>
+
+    <div class="skills-grid">
+      <article class="skill-card reveal">
+        <div class="skill-icon">?</div>
+        <h3>Entrepreneurship</h3>
+        <p>Exploring ideas, understanding customers, pitching services and learning how businesses grow.</p>
+        <div class="skill-tags"><span>Sales</span><span>Ideas</span><span>Strategy</span></div>
+      </article>
+
+      <article class="skill-card reveal">
+        <div class="skill-icon">?</div>
+        <h3>Technology & Web</h3>
+        <p>Building website demos and experimenting with AI tools, HTML, visual design and motion.</p>
+        <div class="skill-tags"><span>HTML/CSS</span><span>AI tools</span><span>Web design</span></div>
+      </article>
+
+      <article class="skill-card reveal">
+        <div class="skill-icon">?</div>
+        <h3>Financial Markets</h3>
+        <p>Learning about trading, market behaviour, risk management and the importance of discipline.</p>
+        <div class="skill-tags"><span>Markets</span><span>Research</span><span>Risk awareness</span></div>
+      </article>
+
+      <article class="skill-card reveal">
+        <div class="skill-icon">?</div>
+        <h3>Aviation</h3>
+        <p>Studying aviation concepts and learning about aircraft, flight controls and the commercial pilot pathway.</p>
+        <div class="skill-tags"><span>Aircraft</span><span>Flight theory</span><span>DGCA learning</span></div>
+      </article>
+
+      <article class="skill-card reveal">
+        <div class="skill-icon">?</div>
+        <h3>Creative Work</h3>
+        <p>Exploring video editing, basic cinematography, visual storytelling and digital presentation.</p>
+        <div class="skill-tags"><span>Editing</span><span>Visuals</span><span>Storytelling</span></div>
+      </article>
+
+      <article class="skill-card reveal">
+        <div class="skill-icon">?</div>
+        <h3>Languages & Learning</h3>
+        <p>Communicating in English, Hindi and Kannada, with an interest in German and Japanese.</p>
+        <div class="skill-tags"><span>Languages</span><span>Music</span><span>Curiosity</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="container">
+    <div class="eyebrow reveal">Selected work</div>
+    <h2 class="section-title reveal">Ideas made visible.</h2>
+    <p class="section-description reveal">
+      A selection of website projects and demos created while learning how to build
+      digital experiences for local businesses.
+    </p>
+
+    <div class="project-grid">
+      <article class="project-card reveal">
+        <div class="project-art">
+          <div class="art-label">Local business website</div>
+          <div class="symbol">SUZ.</div>
+        </div>
+        <div class="project-body">
+          <h3>SUZZ Website Concept</h3>
+          <p>A personal creative project exploring visual identity, web presentation and digital design.</p>
+          <a class="project-link" href="https://sujayshanbhag03-byte.github.io/suzzz-272/" target="_blank" rel="noopener noreferrer">View project ?</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-art" style="background:linear-gradient(135deg,#29241e,#11100f)">
+          <div class="art-label">Fashion & retail</div>
+          <div class="symbol">K31</div>
+        </div>
+        <div class="project-body">
+          <h3>Kings Ka 31 Demo</h3>
+          <p>A retail website concept designed to demonstrate how a clothing business could present its brand online.</p>
+          <a class="project-link" href="https://sujayshanbhag03-byte.github.io/KINGS-DEMO/" target="_blank" rel="noopener noreferrer">View project ?</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-art" style="background:linear-gradient(135deg,#2a1718,#110f10)">
+          <div class="art-label">Fitness & wellness</div>
+          <div class="symbol">SGT</div>
+        </div>
+        <div class="project-body">
+          <h3>Shakti Gym Town Demo</h3>
+          <p>A bold fitness website concept focused on brand presentation, services and customer enquiries.</p>
+          <a class="project-link" href="https://sujayshanbhag03-byte.github.io/ShaktiGym-demo/" target="_blank" rel="noopener noreferrer">View project ?</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section" id="experiments">
+  <div class="container">
+    <div class="eyebrow reveal">Learning by doing</div>
+    <h2 class="section-title reveal">The experiments<br>behind the ambition.</h2>
+    <p class="section-description reveal">
+      Not every idea becomes a business. Every genuine attempt can teach something
+      about customers, execution and what to do differently next time.
+    </p>
+
+    <div class="experiment-list">
+      <div class="experiment reveal">
+        <div class="experiment-number">01</div>
+        <div>
+          <h3>Websites for Local Businesses</h3>
+          <p>Creating demos, approaching potential clients and learning how to communicate the value of a website.</p>
+        </div>
+        <span class="status">In progress</span>
+      </div>
+
+      <div class="experiment reveal">
+        <div class="experiment-number">02</div>
+        <div>
+          <h3>Custom-Branded Bottles</h3>
+          <p>Exploring a product idea involving customised bottles for restaurants and other local businesses.</p>
+        </div>
+        <span class="status">Exploring</span>
+      </div>
+
+      <div class="experiment reveal">
+        <div class="experiment-number">03</div>
+        <div>
+          <h3>Clothing Brand Concept</h3>
+          <p>Experimented with the idea of designing graphic apparel at accessible prices and learned from the process.</p>
+        </div>
+        <span class="status">Past experiment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="container">
+    <div class="eyebrow reveal">Looking ahead</div>
+    <h2 class="section-title reveal">A direction, not<br>a finished story.</h2>
+    <p class="section-description reveal">
+      These are long-term ambitions. The immediate priority is learning, building useful
+      skills and making steady progress without neglecting education or responsibility.
+    </p>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <small>NOW</small>
+        <h3>Learn. Experiment. Execute.</h3>
+        <p>Continue education while building practical skills in entrepreneurship, web design, sales and markets.</p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <small>BY 2032</small>
+        <h3>Reach the first million</h3>
+        <p>Work towards financial independence through responsible learning, business building and consistent effort.</p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <small>BY 2034</small>
+        <h3>A Porsche milestone</h3>
+        <p>A personal symbol of progress, financial discipline and the results of years of focused work.</p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <small>BY 2037</small>
+        <h3>Explore life in Dubai</h3>
+        <p>Build the skills, opportunities and financial foundation that could make an international move possible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-panel reveal">
+      <div class="eyebrow">Get in touch</div>
+      <h3>Have an idea?<br><span>Let's talk.</span></h3>
+      <p>
+        Interested in discussing a project, sharing an idea or connecting over
+        entrepreneurship, technology and aviation? Feel free to reach out.
+      </p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:sujayshanbhag03@gmail.com">Email me ?</a>
+        <a class="btn btn-secondary" href="https://www.instagram.com/suzzz_272/" target="_blank" rel="noopener noreferrer">Instagram ?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div><strong>SUZZ.</strong> © <span id="year"></span> Sujay Shanbhag</div>
+    <div>Designed around curiosity, creativity and ambition.</div>
+    <a href="#home">Back to top ?</a>
+  </div>
+</footer>
+
+<script>
+const header = document.getElementById('header');
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(element => {
+  revealObserver.observe(element);
+});
+</script>
+
+</body>
+</html>
